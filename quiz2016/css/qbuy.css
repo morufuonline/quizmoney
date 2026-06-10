@@ -1,0 +1,30 @@
+body{font-size:100%; height:100%; background-color:#979797; dbackground-image:url(../images/stu.jpg);  width:100%;  color:black; overflow:hidden; margin:auto;}
+div.container{color:black; height:95%; position:absolute; border:solid; border-width:thin; border-color:#979797;  width:95%; margin-left:30px; margin-bottom:80px; margin-top:10px; background-color:#EFEFEF;}
+
+div.container2{background-color:; text-align:center; color:black; height:500px;  margin:auto; margin-left:450px; margin-top:120px; border:none; }
+div.container4{background-color:white; text-align:center; color:black; height:600px; width:50%;  margin:auto; margin-top:50px; border:none; }
+
+
+div.container3{color:black; height:95%; position:absolute; border-width:thin; border-radius:5px; border-color:#979797;  width:75%; margin-left:150px; margin-bottom:80px; margin-top:10px; background-color:#FCFCFC;}
+
+
+div.head{color:black; background-color:white; position:absolute; top:0px; dborder:solid; height:60px; width:100%; padding:0px; dborder:solid;}
+
+
+div.head4{color:white;  dbackground-color:black; width:98%; margin:auto; padding:0px; text-align:center; height:90px;}
+
+
+div.foot{color:blue;background-color:white;position:static; bottom:0px; margin-left:0; margin-top:0;margin-right:10; height60px; width:1000;text-align:center;}
+div.left{float:left; background-color:#EFEFEF; width:30%; height:88%; overflow:auto; border-style:; position:absolute; padding:1em; }
+
+div.left2{background-color:white; width:400px; height:230px; position:relative; margin:auto; margin-top:200px;  overflow:hidden; border:solid; border-color:#C1C1C1; padding:1em; border-radius:5px; font-family:Verdana, Geneva, sans-serif }
+
+
+div.right{ float:right; background-color:#F9F9F9; position:inherit; width:63%; height:100%;  padding:1em; right:0px; border-left:solid; border-color:#F3F3F3; margin-bottom:50px; border-width:thin;}
+
+div.right2{ background-color:#FDFDFD; position:relative; width:50%; height:470px;  padding:1em; float:right; right:0px; border:solid; border-color:#F3F3F3; margin-bottom:50px; margin-top:50px; margin-right:20px; border-width:thin; border-radius:5px;}
+
+div.right3{ background-color:; color:black; font-size:16px;  width:70%; height:470px;  text-align:center; padding:1em; dborder:solid; dborder-color:#F3F3F3; margin:auto; margin-top:50px; dborder-width:thin; dborder-radius:5px;}
+
+
+div.right4{ background-color:#F9F9F9; color:black; font-size:16px; position:relative;  width:70%; height:300px; margin-left:150px;  text-align:center; padding:1em; dborder:solid; dborder-color:#F3F3F3; margin-bottom:50px; margin-top:90px; dborder-width:thin; dborder-radius:5px;}

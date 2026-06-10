@@ -1,0 +1,40 @@
+@charset "utf-8";
+/* CSS Document */
+#errorAlert {
+	color: #F00;
+	border: 1px solid #000;
+	padding: 10px;
+	font-size: 18px;
+}
+#successAlert {
+	color:#00F;
+	border: 1px solid #000;
+	padding: 10px;
+	font-size: 18px;
+}
+#al_fields {
+	padding-left: 10px;
+}
+#linkzz {
+	background-color:#4E4E4E;
+	border-radius: 8px;
+	padding: 5px 10px;
+	color: #FFFFFF;
+}
+#linkzz:hover {
+	color:#FC3;
+}
+div.msg {
+	margin: 40px 0 0 0 ;
+}
+div.director a {
+	border-radius:4px;background-color:#FFAD03;padding:7px 15px;font-size:13px;color:#000;text-shadow:0px 1px 0px #ccc;font-weight:bold;width:auto;box-shadow:inset 0px -10px 15px #ce6d00, 0px 0px 2px #ffad03;border:1px solid #eee;cursor:pointer;text-decoration:none;
+}
+div.director a:hover {
+	background-color:#ffcd1f;
+}
+.Rlist {
+	text-decoration: none;
+	padding: 5px 10px;
+	border-radius:4px;background-color:#171717;font-size:13px;color:#eeeeee;text-shadow:0px 1px 0px #ccc;font-weight:bold;width:auto;box-shadow:inset 0px -10px 15px #ce6d00, 0px 0px 2px #ffad03;border:1px solid #eee;cursor:pointer;	
+}

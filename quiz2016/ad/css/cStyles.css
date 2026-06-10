@@ -1,0 +1,63 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* chat styles */
+
+		#chatbox {
+			background: #DDD url(../images/chatbg2.gif) repeat-x;
+			border: 1px groove #eee;
+			width: 474px;
+			height: 300px;
+			margin: 0 0 0 0px;
+			
+		}
+		#chatbox #initial {
+			text-align:center;
+			margin: auto;
+			width: 250px;
+			padding-top: 30px;
+			font-weight:bold;
+			font-family:Arial, Helvetica, sans-serif;
+		}
+		#chatbox #primary{
+			display: none;
+		}
+		#chatbox #primary #window{
+			width: 100%;
+			height: 261px;
+			background-color: #FFF;
+			border-bottom: 1px solid #AAA;
+			overflow: scroll;
+		}
+		#chatbox #primary #window .list1{
+			background-color: #EEE;
+			padding: 5px;
+			border-bottom: 1px solid #AAA;
+			
+		}
+		#chatbox #primary #window .list2{
+			background-color: #DDD;
+			padding: 5px;
+			border-bottom: 1px solid #AAA;
+		}
+
+		#chatbox #primary #form{
+			width: 100%;
+		}
+		#sendContinue {
+			background: #214fab;
+			padding: 5px 10px;
+			color:#ffffff;
+			font-size:13px;
+			border-radius:2px;
+			transition:.5s ease-in-out;
+			box-shadow:inset 0px 10px 12px #ccc;
+		}
+		.sendContinue {
+			background: #214fab;
+			padding: 5px 10px;
+			color:#ffffff;	
+		}
+input {font-size:13px;color:#333;dborder:1px solid #777;border-radius:2px;transition:.5s ease-in-out;box-shadow:inset 0px 10px 12px #eee; padding:5px 7px;}
+input[type="submit"]{border-radius:4px;background-color:#FFAD03;padding:7px 15px;font-size:16px;color:#000;text-shadow:0px 1px 0px #ccc;font-weight:bold;box-shadow:inset 0px -10px 15px #ce6d00, 0px 0px 2px #ffad03;border:1px solid #eee;cursor:pointer; text-decoration:none;}
+input[type="submit"]:hover, .button:hover{background-color:#ffcd1f;}

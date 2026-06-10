@@ -1,0 +1,658 @@
+ #ecof-main {
+            position: fixed;
+            right: 0;
+            bottom: 50px;
+            z-index: 999999;
+            font-family: "San Francisco", "Helvetica Neue", Helvetica, Arial, san-serif !important;
+            -webkit-transition: all .4s ease 0s;
+            -moz-transition: all .4s ease 0s;
+            -o-transition: all .4s ease 0s;
+            -ms-transition: all .4s ease 0s;
+            transition: all .4s ease 0s
+        }
+        #ecof-main div,
+        #ecof-main h3,
+        #ecof-main input,
+        #ecof-main label {
+            font-family: "San Francisco", "Helvetica Neue", Helvetica, Arial, san-serif !important
+        }
+        #ecof-main .ecof-btn {
+            width: 40px;
+            height: 40px;
+            background-image: url("//ecosmartfilter.com/images/widget/btn-logo.png");
+            background-position: 50%;
+            background-repeat: no-repeat;
+            background-color: #1db15f !important;
+            background-color: rgba(29, 177, 95, 0.8) !important;
+            cursor: pointer;
+            -webkit-transition: all .4s ease 0s;
+            -moz-transition: all .4s ease 0s;
+            -o-transition: all .4s ease 0s;
+            -ms-transition: all .4s ease 0s;
+            transition: all .4s ease 0s;
+            -moz-border-radius: 5px 0 0 5px;
+            -webkit-border-radius: 5px 0 0 5px;
+            -khtml-border-radius: 5px 0 0 5px;
+            -o-border-radius: 5px 0 0 5px;
+            -ms-border-radius: 5px 0 0 5px;
+            border-radius: 5px 0 0 5px
+        }
+        #ecof-main .ecof-btn:hover {
+            background-color: #1db15f !important
+        }
+        #ecof-main .ecof-btn-close {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 20px;
+            height: 20px;
+            background: url("//ecosmartfilter.com/images/widget/close.png") 50% 0 no-repeat;
+            background-color: #000;
+            opacity: 0;
+            visibility: hidden;
+            cursor: pointer;
+            -moz-border-radius: 20px;
+            -webkit-border-radius: 20px;
+            -khtml-border-radius: 20px;
+            -o-border-radius: 20px;
+            -ms-border-radius: 20px;
+            border-radius: 20px;
+            -webkit-transition: transform .4s ease 0s;
+            -moz-transition: transform .4s ease 0s;
+            -o-transition: transform .4s ease 0s;
+            -ms-transition: transform .4s ease 0s;
+            transition: transform .4s ease 0s
+        }
+        #ecof-main .ecof-btn-close:hover {
+            background-position: 50% 100%;
+            box-shadow: 0 0 0 2px #fff;
+            -webkit-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            -o-transform: rotate(180deg)
+        }
+        #ecof-main .ecof-btn-close:active {
+            background-position: 50% 0;
+            background-color: #1db15f
+        }
+        #ecof-main .ecof-bar {
+            position: absolute;
+            width: auto;
+            min-width: 450px;
+            right: -600px;
+            bottom: -5px;
+            height: 50px;
+            opacity: 0;
+            visibility: hidden;
+            background: #fff;
+            font-size: 16px !important;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-direction: row;
+            flex-direction: row;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: space-between;
+            justify-content: space-between;
+            -webkit-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+            -moz-border-radius: 5px 0 0 5px;
+            -webkit-border-radius: 5px 0 0 5px;
+            -khtml-border-radius: 5px 0 0 5px;
+            -o-border-radius: 5px 0 0 5px;
+            -ms-border-radius: 5px 0 0 5px;
+            border-radius: 5px 0 0 5px;
+            -webkit-transition: all .4s ease 0s;
+            -moz-transition: all .4s ease 0s;
+            -o-transition: all .4s ease 0s;
+            -ms-transition: all .4s ease 0s;
+            transition: all .4s ease 0s;
+            -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+            -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2)
+        }
+        #ecof-main .ecof-logo {
+            display: inline-block;
+            height: 50px;
+            width: 90px;
+            float: left;
+            text-decoration: none;
+            border: 0;
+            border-right: 1px solid #ccc;
+            background: url("//ecosmartfilter.com/images/widget/logo.png") 50% no-repeat;
+            background: url("//ecosmartfilter.com/images/logo.svg") 50% no-repeat;
+            background-size: 66px auto
+        }
+        #ecof-main .ecof-menu {
+            padding: 0;
+            float: left;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-direction: row;
+            flex-direction: row;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: flex-start;
+            justify-content: flex-start;
+            -webkit-flex-wrap: nowrap;
+            flex-wrap: nowrap
+        }
+        #ecof-main .ecof-menu-item {
+            display: block;
+            float: left;
+            text-decoration: none !important;
+            font-weight: normal !important;
+            border: 0;
+            height: 50px;
+            line-height: 50px !important;
+            padding: 0 12px 0 30px;
+            background: url("//ecosmartfilter.com/images/widget/blocked.png") 10px 50% no-repeat;
+            color: #000;
+            cursor: pointer;
+            text-align: left;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-direction: row;
+            flex-direction: row;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: flex-start;
+            justify-content: flex-start;
+            -webkit-flex-wrap: nowrap;
+            flex-wrap: nowrap
+        }
+        #ecof-main .ecof-menu-item#ecof-toreport {
+            background-image: url("//ecosmartfilter.com/images/widget/report.png")
+        }
+        #ecof-main .ecof-menu-item:hover {
+            color: #1db15f
+        }
+        #ecof-main .ecof-menu-item.ecof-isblocked {
+            color: #7f7f7f;
+            white-space: nowrap
+        }
+        #ecof-main .ecof-menu-close {
+            height: 50px;
+            width: 34px;
+            background: url("//ecosmartfilter.com/images/widget/close2.png") 50% no-repeat;
+            opacity: .5;
+            cursor: pointer;
+            float: right;
+            -webkit-transition: all .4s ease 0s;
+            -moz-transition: all .4s ease 0s;
+            -o-transition: all .4s ease 0s;
+            -ms-transition: all .4s ease 0s;
+            transition: all .4s ease 0s
+        }
+        #ecof-main .ecof-menu-close:hover {
+            opacity: 1;
+            -webkit-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            -o-transform: rotate(180deg)
+        }
+        #ecof-main .ecof-menu-close:active {
+            opacity: .3
+        }
+        #ecof-main.ecof-open .ecof-btn {
+            background-color: #000
+        }
+        #ecof-main.ecof-open .ecof-btn-close {
+            opacity: 0 !important;
+            visibility: hidden !important
+        }
+        #ecof-main.ecof-open .ecof-bar {
+            right: 0;
+            opacity: 1;
+            visibility: visible
+        }
+        #ecof-main.ecof-hide {
+            opacity: 0;
+            right: -100px
+        }
+        #ecof-main.ecof-hidden {
+            display: none
+        }
+        #ecof-main:hover .ecof-btn-close {
+            opacity: 1;
+            visibility: visible
+        }
+        #ecof-overlay {
+            display: none;
+            visibility: hidden;
+            opacity: 0;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.1);
+            left: 0;
+            z-index: 99999
+        }
+        #ecof-overlay.ecof-visible {
+            display: block;
+            visibility: visible;
+            opacity: 1
+        }
+        .ecof-modal {
+            position: fixed;
+            top: -1000px;
+            left: 50%;
+            height: auto;
+            margin: 0 auto;
+            width: 736px;
+            max-width: 736px;
+            background-color: #fff;
+            -webkit-overflow-scrolling: touch;
+            margin: 0;
+            overflow: auto;
+            border: 0;
+            padding: 0;
+            visibility: hidden;
+            overflow: visible;
+            z-index: 999999;
+            font-family: "San Francisco", "Helvetica Neue", Helvetica, Arial, san-serif !important;
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+            filter: alpha(opacity=0);
+            -moz-opacity: 0;
+            -khtml-opacity: 0;
+            opacity: 0;
+            -webkit-transition: all .4s ease 0s;
+            -moz-transition: all .4s ease 0s;
+            -o-transition: all .4s ease 0s;
+            -ms-transition: all .4s ease 0s;
+            transition: all .4s ease 0s;
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+            -moz-border-radius: 4px;
+            -webkit-border-radius: 4px;
+            -khtml-border-radius: 4px;
+            -o-border-radius: 4px;
+            -ms-border-radius: 4px;
+            border-radius: 4px;
+            -webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+            -moz-box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.3)
+        }
+        .ecof-modal .ecof-gotourl {
+            text-decoration: none
+        }
+        .ecof-modal-header {
+            height: 60px;
+            overflow: hidden
+        }
+        .ecof-modal-header h3 {
+            clear: none !important;
+            float: left;
+            font-size: 24px;
+            color: #464c52;
+            margin: 0;
+            line-height: 60px;
+            font-weight: normal;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            padding: 0 0 0 25px;
+            max-width: 350px
+        }
+        .ecof-modal-header .ecof-btn {
+            float: right;
+            width: 55px;
+            height: 60px;
+            cursor: pointer;
+            background: url("//ecosmartfilter.com/images/widget/close2.png") 50% no-repeat;
+            border-left: 1px solid #d3d3d3;
+            opacity: .5
+        }
+        .ecof-modal-header .ecof-btn:hover {
+            opacity: 1
+        }
+        .ecof-modal-body {
+            background: #ededed;
+            padding: 60px 90px;
+            border-top: 1px solid #d3d3d3;
+            border-bottom: 1px solid #d3d3d3;
+            vertical-align: top;
+            position: relative
+        }
+        .ecof-modal-body .ecof-reason-form {
+            text-align: left;
+            float: none
+        }
+        .ecof-modal-body input[type=radio] {
+            display: none !important
+        }
+        .ecof-modal-body input[type=radio]+label {
+            font-size: 16px !important;
+            color: #383838;
+            width: 100% !important;
+            font-weight: normal !important;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            margin: 10px 0 !important;
+            cursor: pointer;
+            display: inline-block;
+            text-align: left
+        }
+        .ecof-modal-body input[type=radio]+label .ecof-radio {
+            width: 16px;
+            height: 16px;
+            float: left;
+            background: #fff;
+            margin: 2px 12px 0 0;
+            position: relative;
+            overflow: hidden;
+            -moz-border-radius: 16px;
+            -webkit-border-radius: 16px;
+            -khtml-border-radius: 16px;
+            -o-border-radius: 16px;
+            -ms-border-radius: 16px;
+            border-radius: 16px;
+            -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+            -moz-box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.5)
+        }
+        .ecof-modal-body input[type=radio]+label .ecof-radio:after {
+            content: "";
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            top: 5px;
+            left: 5px;
+            background: #fff;
+            opacity: 0;
+            -webkit-transition: all .4s ease 0s;
+            -moz-transition: all .4s ease 0s;
+            -o-transition: all .4s ease 0s;
+            -ms-transition: all .4s ease 0s;
+            transition: all .4s ease 0s;
+            -moz-border-radius: 16px;
+            -webkit-border-radius: 16px;
+            -khtml-border-radius: 16px;
+            -o-border-radius: 16px;
+            -ms-border-radius: 16px;
+            border-radius: 16px;
+            transform: scale(.5);
+            -webkit-transform: scale(.5);
+            -o-transform: scale(.5);
+            -moz-transform: scale(.5)
+        }
+        .ecof-modal-body input[type=radio]:checked+label .ecof-radio {
+            background-color: #3b99fc;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none
+        }
+        .ecof-modal-body input[type=radio]:checked+label .ecof-radio:after {
+            opacity: 1;
+            transform: scale(1);
+            -webkit-transform: scale(1);
+            -o-transform: scale(1);
+            -moz-transform: scale(1)
+        }
+        .ecof-modal-body img,
+        .ecof-modal-body iframe,
+        .ecof-modal-body video {
+            vertical-align: top
+        }
+        .ecof-modal-body .ecof-tooltip {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: url("//ecosmartfilter.com/images/widget/sprite.png") 0 -36px no-repeat;
+            position: relative;
+            cursor: help;
+            margin: 0 0 0 10px;
+            white-space: normal
+        }
+        .ecof-modal-body .ecof-tooltip:before,
+        .ecof-modal-body .ecof-tooltip:after {
+            position: absolute;
+            left: 50px;
+            opacity: 0;
+            visibility: hidden;
+            -webkit-transition: all .4s ease .1s;
+            -moz-transition: all .4s ease .1s;
+            -o-transition: all .4s ease .1s;
+            -ms-transition: all .4s ease .1s;
+            transition: all .4s ease .1s
+        }
+        .ecof-modal-body .ecof-tooltip:before {
+            content: "";
+            top: 0;
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+            border-right: 10px solid #fff;
+            margin-top: -5px
+        }
+        .ecof-modal-body .ecof-tooltip:after {
+            background: #fff;
+            box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+            color: #383838;
+            content: attr(data-tooltip);
+            margin: 0 0 0 20px;
+            padding: 20px;
+            top: 0;
+            width: 320px;
+            -moz-box-sizing: content-box;
+            -webkit-box-sizing: content-box;
+            box-sizing: content-box;
+            -moz-border-radius: 4px;
+            -webkit-border-radius: 4px;
+            -khtml-border-radius: 4px;
+            -o-border-radius: 4px;
+            -ms-border-radius: 4px;
+            border-radius: 4px;
+            -webkit-transform: translate(0, -50%);
+            -moz-transform: translate(0, -50%);
+            -ms-transform: translate(0, -50%);
+            -o-transform: translate(0, -50%)
+        }
+        .ecof-modal-body .ecof-tooltip:hover {
+            background-position: -12px -36px
+        }
+        .ecof-modal-body .ecof-tooltip:hover:before,
+        .ecof-modal-body .ecof-tooltip:hover:after {
+            opacity: 1;
+            visibility: visible;
+            left: 100%
+        }
+        .ecof-modal-body .ecof-reason-text textarea {
+            max-width: 100%;
+            width: 400px;
+            height: 0;
+            resize: none;
+            border: 1px solid #ccc;
+            padding: 0 10px;
+            margin: 0 0 0 25px;
+            opacity: 0;
+            visibility: hidden;
+            vertical-align: top;
+            -webkit-transition: all .4s ease 0s;
+            -moz-transition: all .4s ease 0s;
+            -o-transition: all .4s ease 0s;
+            -ms-transition: all .4s ease 0s;
+            transition: all .4s ease 0s;
+            -moz-border-radius: 4px;
+            -webkit-border-radius: 4px;
+            -khtml-border-radius: 4px;
+            -o-border-radius: 4px;
+            -ms-border-radius: 4px;
+            border-radius: 4px
+        }
+        .ecof-modal-body .ecof-reason-text textarea:focus {
+            border-color: #1db15f
+        }
+        .ecof-modal-body .ecof-reason-text.ecof-show textarea {
+            height: 100px;
+            padding: 10px;
+            opacity: 1;
+            visibility: visible
+        }
+        .ecof-modal-body #ecof-form-send {
+            display: none
+        }
+        .ecof-modal-body .ecof-status-success {
+            text-align: center;
+            font-weight: 300;
+            font-size: 28px;
+            color: #383838;
+            margin: 0;
+            padding: 90px 0 0 0;
+            background: url("//ecosmartfilter.com/images/widget/unlocked.png") 50% 0 no-repeat
+        }
+        .ecof-modal-footer {
+            padding: 15px 20px
+        }
+        .ecof-modal-footer .ecof-modal-btn {
+            float: left;
+            padding: 0 40px;
+            height: 48px;
+            line-height: 48px;
+            font-size: 18px;
+            color: #585858;
+            background: #f3f3f3;
+            border: 1px solid #d8d8d8;
+            cursor: pointer;
+            -webkit-transition: all .4s ease 0s;
+            -moz-transition: all .4s ease 0s;
+            -o-transition: all .4s ease 0s;
+            -ms-transition: all .4s ease 0s;
+            transition: all .4s ease 0s;
+            -moz-border-radius: 4px;
+            -webkit-border-radius: 4px;
+            -khtml-border-radius: 4px;
+            -o-border-radius: 4px;
+            -ms-border-radius: 4px;
+            border-radius: 4px
+        }
+        .ecof-modal-footer .ecof-modal-btn:hover {
+            background: #fff
+        }
+        .ecof-modal-footer .ecof-modal-btn:active {
+            background: #e7e7e7
+        }
+        .ecof-modal-footer .ecof-modal-btn.ecof-modal-send {
+            float: right;
+            background: #ddd;
+            border-color: #ddd;
+            color: #fff;
+            cursor: not-allowed
+        }
+        .ecof-modal-footer .ecof-modal-btn.ecof-modal-send.ecof-active {
+            cursor: pointer;
+            background: #1db15f;
+            border: 0
+        }
+        .ecof-modal-footer .ecof-modal-btn.ecof-modal-send.ecof-active:hover {
+            background-color: #26db77
+        }
+        .ecof-modal-footer .ecof-modal-btn.ecof-modal-send.ecof-active:active {
+            background-color: #168547
+        }
+        .ecof-modal-footer:after,
+        .ecof-modal-footer:before {
+            content: "";
+            display: table;
+            clear: both
+        }
+        .ecof-modal.ecof-open {
+            visibility: visible;
+            top: 50%;
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+            filter: alpha(opacity=100);
+            -moz-opacity: 1;
+            -khtml-opacity: 1;
+            opacity: 1
+        }
+        .ecof-modal.ecof-modal-success {
+            overflow: hidden
+        }
+        .ecof-modal.ecof-modal-success .ecof-modal-body {
+            padding: 90px 0 140px 0;
+            text-align: center;
+            font-size: 24px
+        }
+        .ecof-modal.ecof-modal-success .ecof-modal-footer {
+            display: none
+        }
+        .ecof-modal-status {
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: -200px;
+            height: 90px;
+            line-height: 90px;
+            font-size: 36px;
+            color: #fff;
+            background: #ddd;
+            text-align: center;
+            z-index: 999999;
+            cursor: pointer;
+            -webkit-transition: all .4s ease 0s;
+            -moz-transition: all .4s ease 0s;
+            -o-transition: all .4s ease 0s;
+            -ms-transition: all .4s ease 0s;
+            transition: all .4s ease 0s
+        }
+        .ecof-modal-status.ecof-status-success,
+        .ecof-modal-status.ecof-status-failure {
+            top: 0;
+            background: #1db15f;
+            background: rgba(29, 177, 95, 0.9)
+        }
+        .ecof-modal-status.ecof-status-failure {
+            background: #ff002a;
+            background: rgba(255, 0, 42, 0.9)
+        }
+        .ecof-close {
+            float: right;
+            cursor: pointer;
+            opacity: .5;
+            width: 50px;
+            height: 60px;
+            text-align: center;
+            border-left: 1px solid #d3d3d3
+        }
+        .ecof-close:hover {
+            opacity: 1
+        }
+        .ecof-close:active {
+            opacity: .3
+        }
+        @media (-webkit-min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi) {
+            #ecof-main .ecof-btn {
+                background-image: url("//ecosmartfilter.com/images/widget/btn-logo-x2.png");
+                background-size: 21px auto
+            }
+            #ecof-main .ecof-menu-item {
+                background-image: url("//ecosmartfilter.com/images/widget/blocked-x2.png");
+                background-size: 12px auto
+            }
+            #ecof-main .ecof-menu-item#ecof-toreport {
+                background-image: url("//ecosmartfilter.com/images/widget/report-x2.png")
+            }
+            #ecof-main .ecof-menu-item.ecof-menu-toggle {
+                background-image: url("//ecosmartfilter.com/images/widget/settings-x2.png")
+            }
+            #ecof-main .ecof-btn-close {
+                background-image: url("//ecosmartfilter.com/images/widget/close-x2.png");
+                background-size: 20px auto
+            }
+            #ecof-main .ecof-menu-close {
+                background-image: url("//ecosmartfilter.com/images/widget/close2-x2.png");
+                background-size: 10px auto
+            }
+            .ecof-modal-header .ecof-btn {
+                background-image: url("//ecosmartfilter.com/images/widget/close2-x2.png");
+                background-size: 10px auto
+            }
+            .ecof-modal-body .ecof-status-success {
+                background-image: url("//ecosmartfilter.com/images/widget/unlocked-x2.png");
+                background-size: 54px auto
+            }
+        }

@@ -1,0 +1,743 @@
+<?php
+// Date in the past
+header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+header("Cache-Control: no-cache");
+header("Pragma: no-cache");
+
+ini_set('session.gc_maxlifetime', 86400);
+session_start(); 
+
+require_once("classes/DB_class.php");
+require_once("includes/functions.php");
+$db = new DB();
+$db->connect();
+?>
+<!doctype html>
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Title Of Site -->
+	<title>Quiz Money Game</title>
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+<script src="https://use.fontawesome.com/ac6f3c60d8.js"></script>
+	<!-- CSS Plugins -->
+	<link rel="icon" 
+      type="image/png" 
+      href="images/icon (1).png">
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" media="screen">	
+	<link href="css/animate.css" rel="stylesheet">
+	<link href="css/main.css" rel="stylesheet">
+	<link href="css/component.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/components.css" />
+	
+	<!-- CSS Font Icons -->
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.css">
+  <link rel="stylesheet" href="icons/open-iconic/font/css/open-iconic-bootstrap.css">
+  <link rel="stylesheet" href="icons/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="pe-icon-7-stroke/css/pe-icon-7-stroke.css">
+	<link rel="stylesheet" href="icons/ionicons/css/ionicons.css">
+	<link rel="stylesheet" href="icons/rivolicons/style.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+
+ <!-- Insert to your webpage before the </head> -->
+    <script src="sliderengine/jquery.js"></script>
+    <script src="sliderengine/amazingslider.js"></script>
+    <link rel="stylesheet" type="text/css" href="sliderengine/amazingslider-1.css">
+    <script src="sliderengine/initslider-1.js"></script>
+    <!-- End of head section HTML codes -->
+	<!-- CSS Custom -->
+	<link href="css/style.css" rel="stylesheet">
+	
+	<!-- Add your own style -->
+	<link href="css/your-style.css" rel="stylesheet">
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+<style>
+<!--
+.success{
+background:#099;
+color:#fff;
+font-size:16px;
+text-align:center;
+padding:10px;
+padding-top:15px;
+padding-bottom:15px;
+margin:10px;
+cursor:default;
+}
+.success *, .success *:active, .success *:hover{
+text-decoration:none;
+color:#fff;
+font-size:16px;
+cursor:pointer;
+}
+.success a:hover{
+text-decoration:underline;
+}
+.not_success{
+background:#b00;
+color:#fff;
+font-size:16px;
+text-align:center;
+padding:10px;
+padding-top:15px;
+padding-bottom:15px;
+margin:10px;
+}
+-->
+</style>	
+
+<script type="text/javascript"> //<![CDATA[ 
+var tlJsHost = ((window.location.protocol == "https:") ? "https://secure.comodo.com/" : "http://www.trustlogo.com/");
+document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/trustlogo.js' type='text/javascript'%3E%3C/script%3E"));
+//]]>
+</script>
+</head>
+
+<?php
+$shuffled_data = str_shuffle("AbCdEfGhIjKlMnOpQrStUvWxYz123456789{}()");
+
+$user_id = $reg = $first_name = $last_name = $phone = $address = $state = $email = $confirm_email = $password = $check_user = $accept = "";
+
+$reg = ($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST["reg"]))?test_input($_POST["reg"]):$reg;
+$first_name = ($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST["first_name"]))?test_input($_POST["first_name"]):$first_name;
+$last_name = ($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST["last_name"]))?test_input($_POST["last_name"]):$last_name;
+$phone = ($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST["phone"]))?test_input($_POST["phone"]):$phone;
+$address = ($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST["address"]))?test_input($_POST["address"]):$address;
+$state = ($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST["state"]))?test_input($_POST["state"]):$state;
+$email = ($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST["email"]))?test_input($_POST["email"]):$email;
+$confirm_email = ($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST["confirm_email"]))?test_input($_POST["confirm_email"]):$confirm_email;
+$password = ($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST["password"]))?test_input($_POST["password"]):$password;
+$check_user = ($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST["check_user"]))?test_input($_POST["check_user"]):$check_user;
+$accept = ($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST["accept"]))?test_input($_POST["accept"]):$accept;
+
+if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($reg) && !empty($first_name) && !empty($last_name) && !empty($phone) && !empty($address) && !empty($state) && !empty($email) && $email == $confirm_email && !empty($password) && filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($accept) && $check_user == $_SESSION["spam_checker"]){
+
+$password = sha1(test_input($password));
+
+$result = $db->select("register", "Where email = '{$email}'", "*", "");
+
+if(count_rows($result) < 1){
+
+$to = "{$email}";
+$subject = "Account Activation";
+
+$message = "
+<html>
+<head>
+<title>Account Activation</title>
+</head>
+<body>
+<p><img src='{$directory}images/logo3.png'><br><br>Dear {$first_name} {$last_name},<br><br>Thank you for signing up on quizmoneygame.com.<br><br>Kindly activate your account by clickng on this link: <a href='{$directory}?a=" . urlencode($email) . "&b={$shuffled_data}'>Activate</a><br><br>OR<br><br>Copy this link and paste it on your address bar: {$directory}?a=" . urlencode($email) . "&b={$shuffled_data}<br><br><br><br>Regards,<br><br>Quiz Money Game Team,<br><br><a href='{$directory}'>quizmoneygame.com</a></p>
+</body>
+</html>
+";
+$message = wordwrap($message,70);
+
+// Always set content-type when sending HTML email
+$headers = "MIME-Version: 1.0" . "\r\n";
+$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+// More headers
+$headers .= "From: Quiz Money Game <noreply@quizmoneygame.com>" . "\r\n";
+
+mail($to,$subject,$message,$headers);
+
+$data_array = array(
+"first_name" => "'$first_name'",
+"last_name" => "'$last_name'",
+"phone" => "'$phone'",
+"address" => "'$address'",
+"state" => "'$state'",
+"email" => "'$email'",
+"password" => "'$password'",
+"balance" => "'100'",
+"date" => "'" . date("Y-m-d") . "'"
+);
+$act = $db->insert($data_array, "register");
+
+if($act){
+$user_id = "UID" . str_pad(in_table("id", "register", "WHERE email = '$email'", "id"),7,"0",STR_PAD_LEFT);
+$db->query("UPDATE register SET user_id = '$user_id' WHERE email = '{$email}'");
+
+$_SESSION["success"] = "<div class='success'>Account successfully created. Kindly check your mail to activate your account. You may also proceed to log in.</div>";
+redirect("index.php");
+}else{
+$_SESSION["notSuccess"] = "<div class='not_success'>Error occured.</div>";
+}
+
+}else{
+$_SESSION["notSuccess"] = "<div class='not_success'>Email already exists. Log in instead.</div>";
+}
+
+}
+
+if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($reg) && (empty($first_name) or empty($last_name) or empty($phone) or empty($address) or empty($state) or empty($email) or $email != $confirm_email or empty($password) or !filter_var($email, FILTER_VALIDATE_EMAIL) or empty($accept) or $check_user != $_SESSION["spam_checker"])){
+$_SESSION["notSuccess"] = "<div class='not_success'>Not submitted. All fields need to be appropriately field.</div>";
+}
+
+///////////////////////////////////////Starts Newsletter///////////////////////////////////
+$newsletter_email = "";
+
+$newsletter_email = ($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST["newsletter_email"]))?test_input($_POST["newsletter_email"]):$newsletter_email;
+
+if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($newsletter_email)){
+
+$result = $db->select("newsletter", "Where email = '{$newsletter_email}'", "*", "");
+
+if(count_rows($result) < 1){
+
+$to = "{$newsletter_email}";
+$subject = "Newsletter Subscription";
+
+$message = "
+<html>
+<head>
+<title>Newsletter Subscription</title>
+</head>
+<body>
+<p><img src='{$directory}images/logo3.png'><br><br>Dear customer,<br><br>Thank you for subscribing to our newsletter.<br><br>We will update you as soon as possible.<br><br><br><br>Regards,<br><br>Quiz Money Game Team,<br><br><a href='{$directory}'>quizmoneygame.com</a></p>
+</body>
+</html>
+";
+$message = wordwrap($message,70);
+
+// Always set content-type when sending HTML email
+$headers = "MIME-Version: 1.0" . "\r\n";
+$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+// More headers
+$headers .= "From: Quiz Money Game <noreply@quizmoneygame.com>" . "\r\n";
+
+mail($to,$subject,$message,$headers);
+
+$data_array = array(
+"email" => "'$newsletter_email'",
+"date_time" => "'" . date("Y-m-d H:i:s") . "'"
+);
+$act = $db->insert($data_array, "newsletter");
+
+if($act){
+$_SESSION["success"] = "<div class='success'>Thank you for subscribing to our newsletter. We will get back to you shortly.</div>";
+redirect("index.php");
+}else{
+$_SESSION["notSuccess"] = "<div class='not_success'>Error occured.</div>";
+}
+
+}else{
+$_SESSION["notSuccess"] = "<div class='not_success'>Email already exists. Thank you.</div>";
+}
+
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////
+?>
+
+<!-- Starts Questions -->
+
+<?php
+$question = $option1 = $option2 = $option3 = $option4 = $answer = $description = "";
+
+$question = ($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST["question"]))?test_input($_POST["question"]):$question;
+$option1 = ($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST["option1"]))?test_input($_POST["option1"]):$option1;
+$option2 = ($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST["option2"]))?test_input($_POST["option2"]):$option2;
+$option3 = ($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST["option3"]))?test_input($_POST["option3"]):$option3;
+$option4 = ($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST["option4"]))?test_input($_POST["option4"]):$option4;
+$answer = ($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST["answer"]))?test_input($_POST["answer"]):$answer;
+$description = ($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST["description"]))?test_input($_POST["description"]):$description;
+
+if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($question) && !empty($option1) && !empty($option2) && !empty($option3) && !empty($option4) && !empty($answer) && !empty($description)){
+
+$result = $db->select("submitted_questions", "Where question = '{$question}'", "*", "");
+
+if(count_rows($result) < 1){
+
+$data_array = array(
+"question" => "'$question'",
+"option1" => "'$option1'",
+"option2" => "'$option2'",
+"option3" => "'$option3'",
+"option4" => "'$option4'",
+"answer" => "'$answer'",
+"description" => "'$description'",
+"date_time" => "'" . date("Y-m-d H:i:s") . "'"
+);
+$act = $db->insert($data_array, "submitted_questions");
+
+if($act){
+$_SESSION["success"] = "<div class='success'>Question successfully submitted. Thank you very much.</div>";
+redirect("index.php");
+}else{
+$_SESSION["notSuccess"] = "<div class='not_success'>Error occured.</div>";
+}
+
+}else{
+$_SESSION["notSuccess"] = "<div class='not_success'>Question already exists. Kindly submit another.</div>";
+}
+
+}
+
+if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($question) && (empty($option1) or empty($option2) or empty($option3) or empty($option4) or empty($answer) or empty($description))){
+$_SESSION["notSuccess"] = "<div class='not_success'>Not submitted. All fields need to be appropriately field.</div>";
+}
+
+//////////Forgot Password////////////////////////////
+$forgot_email = "";
+
+$forgot_email = ($_SERVER['REQUEST_METHOD'] == "POST" && !empty($_POST["forgot_email"]))?test_input($_POST["forgot_email"]):$forgot_email;
+
+if($_SERVER['REQUEST_METHOD'] == "POST" && !empty($forgot_email)){
+$password = "";
+$password = rand(10000,20000);
+$password2 = sha1($password);
+
+$result = $db->select("register", "WHERE email = '{$forgot_email}'", "*", "");
+
+if(count_rows($result) == 1){
+$fid = $db->query("UPDATE register SET password = '$password2' WHERE email = '{$forgot_email}'");
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+$first_name = in_table("first_name", "register", "WHERE email = '$forgot_email'", "first_name");
+$last_name = in_table("last_name", "register", "WHERE email = '$forgot_email'", "last_name");
+$to = "{$forgot_email}";
+$subject = "Password Reset";
+
+$message = "
+<html>
+<head>
+<title>Password Reset</title>
+</head>
+<body>
+<p><img src='{$directory}images/logo3.png'><br><br>Dear {$first_name} {$last_name},<br><br>Your password was successfully reset to <b>{$password}</b> .<br><br>Kindly log in to your account by clickng on this link: <a href='{$directory}'>Login</a><br><br>OR<br><br>Copy this link and paste it on your address bar: {$directory}<br><br><br><br>Regards,<br><br>Quiz Money Game Team,<br><br><a href='{$directory}'>quizmoneygame.com</a></p>
+</body>
+</html>
+";
+$message = wordwrap($message,70);
+
+// Always set content-type when sending HTML email
+$headers = "MIME-Version: 1.0" . "\r\n";
+$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+// More headers
+$headers .= "From: Quiz Money Game <noreply@quizmoneygame.com>" . "\r\n";
+
+mail($to,$subject,$message,$headers);
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+if($fid){
+$_SESSION["success"] = "<div class='success'>Password successfully changed. Kindly check your mail.</div>";
+redirect("index.php");
+}else{
+$_SESSION["notSuccess"] = "<div class='not_success'>Error occured. Password could not be reset.</div>";
+}
+}else{
+$_SESSION["notSuccess"] = "<div class='not_success'>Not successful. This email does not exist.</div>";
+}
+}
+?>
+
+<body>
+
+	<!-- BEGIN # MODAL LOGIN -->
+	<div class="modal fade modal-login modal-border-transparent" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
+		
+		<div class="modal-dialog">
+		
+			<div class="modal-content">
+				
+				<button type="button" class="btn btn-close close" data-dismiss="modal" aria-label="Close">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+				</button>
+				
+				<div class="clear"></div>
+				
+				<!-- Begin # DIV Form -->
+				<div id="modal-login-form-wrapper">
+					
+					<!-- Begin # Login Form -->
+					<form id="login-form" action="" method="post">
+					
+						<div class="modal-body pb-5">
+					
+							<h4>Account Login</h4>
+						
+							<div class="form-group"> 
+								<input name="email" id="email" class="form-control" value="<?php echo (isset($_POST["email"]))?$_POST["email"]:""; ?>" placeholder="Email" type="text"> 
+							</div>
+							<div class="form-group"> 
+								<input name="password" id="password" class="form-control" value="<?php echo (isset($_POST["password"]))?$_POST["password"]:""; ?>" placeholder="Password" type="password"> 
+							</div>
+			
+							<div class="form-group mt-10 mb-10">
+								<div class="row gap-5">
+									<div class="col-xs-6 col-sm-6 col-md-6">
+										<div class="form-group"> 
+								<input  type="checkbox"/>  Remember me
+							</div>
+									</div>
+									<div class="col-xs-6 col-sm-6 col-md-6 text-right mt-5"> 
+										<button id="login_lost_btn" type="button" class="btn btn-link">forgot pass?</button>
+									</div>
+								</div>
+							</div>
+						
+						</div>
+						
+						<div class="modal-footer">
+						
+							<div class="row gap-10">
+								<div class="col-xs-6 col-sm-6 mb-10">
+									<button type="submit" class="btn btn-primary btn-sm btn-block">Sign-in</button>
+								</div>
+								<div class="col-xs-6 col-sm-6 mb-10">
+									<button type="submit" class="btn btn-main btn-sm btn-block btn-inverse" data-dismiss="modal" aria-label="Close">Cancel</button>
+								</div>
+							</div>
+							<div class="text-left">
+								No account? 
+								<button id="login_register_btn" type="button" class="btn btn-link">Register</button>
+							</div>
+							
+						</div>
+					
+					</form>
+					<!-- End # Login Form -->
+								
+					<!-- Begin | Lost Password Form -->
+					<form id="lost-form" style="display:none;" action="" method="post">
+						<div class="modal-body pb-5">
+						
+							<h4>Forgot password</h4>
+
+							<div class="form-group"> 
+			<input name="forgot_email" id="forgot_email" class="form-control" type="text" placeholder="Enter Your Email" required>
+							</div>
+							
+							<div class="text-center mt-10 mb-10">
+								<button id="lost_login_btn" type="button" class="btn btn-link">Sign-in</button> or 
+								<button id="lost_register_btn" type="button" class="btn btn-link">Register</button>
+							</div>
+							
+						</div>
+						
+						<div class="modal-footer mt-10">
+							
+							<div class="row gap-10">
+								<div class="col-xs-6 col-sm-6">
+									<button type="submit" class="btn btn-primary btn-sm btn-block">Submit</button>
+								</div>
+								<div class="col-xs-6 col-sm-6">
+									<button type="submit" class="btn btn-main btn-sm btn-inverse btn-block" data-dismiss="modal" aria-label="Close">Cancel</button>
+								</div>
+							</div>
+							
+						</div>
+						
+					</form>
+					<!-- End | Lost Password Form -->
+								
+					<!-- Begin | Register Form -->
+					<form id="register-form" method="post" action="" style="display:none;">
+                    <input type="hidden" name="reg" value="1">
+					
+						<div class="modal-body pb-5">
+
+							<h4>Register</h4>
+							
+							<div class="form-group"> 
+				               <input name="first_name" id="first_name" value="<?php if(isset($_POST["first_name"])){echo $_POST["first_name"];} ?>" class="form-control" type="text" placeholder="First Name" required> 
+							</div>
+
+							<div class="form-group"> 
+								<input name="last_name" id="last_name" value="<?php if(isset($_POST["last_name"])){echo $_POST["last_name"];} ?>" class="form-control" type="text" placeholder="Last Name" required> 
+							</div>
+
+							<div class="form-group"> 
+								<input name="phone" id="phone" value="<?php if(isset($_POST["phone"])){echo $_POST["phone"];} ?>" class="form-control only_no" type="text" placeholder="Phone" required> 
+							</div>
+							
+							<div class="form-group"> 
+								<input name="address" id="address" value="<?php if(isset($_POST["address"])){echo $_POST["address"];} ?>" class="form-control" type="text" placeholder="Address" required> 
+							</div>
+                            
+							<div class="form-group"> 
+								<select name="state" id="state" class="form-control" required>
+								<option value="">**Select a state**</option>
+<?php 
+$result = $db->select("location", "", "DISTINCT state", "ORDER BY state ASC");
+if(mysql_num_rows($result) > 0){
+while($row = mysql_fetch_array($result)){
+$state = $row["state"];
+echo "<option value='{$state}'";
+echo (isset($_POST["state"]) && $_POST["state"] == $state)?" selected":"";
+echo ">{$state}</option>";
+}
+}
+?>
+								</select> 
+							</div>
+							
+							<div class="form-group"> 
+								<input name="email" id="email" value="<?php if(isset($_POST["email"])){echo $_POST["email"];} ?>" class="form-control" type="email" placeholder="Email" required>
+<?php 
+if(isset($_POST["email"]) && !filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)){
+echo "<sapn style='color:#f00;'>Invalid Email</span>";
+}
+?>
+							</div>
+                            
+							<div class="form-group"> 
+				          <input name="confirm_email" id="confirm_email" value="<?php if(isset($_POST["confirm_email"])){echo $_POST["confirm_email"];} ?>" class="form-control" type="email" placeholder="Confirm Email" required>
+							</div>
+							
+							<div class="form-group"> 
+								<input name="password" id="password" value="<?php if(isset($_POST["password"])){echo $_POST["password"];} ?>" class="form-control" type="password" placeholder="Password" required>
+							</div>
+                            
+<div class="form-group">
+Type this check code below: <?php $_SESSION["spam_checker"] = rand(1000,9999); echo $_SESSION["spam_checker"]; ?><br>
+<input type="number" name="check_user" id="check_user" class="form-control only_no"  maxlength="4" placeholder="Type the check code here" required value="">
+</div>
+
+							<div class="form-group"> 
+<label for="accept"><input name="accept" id="accept" type="checkbox" value="1"<?php echo (isset($_POST["accept"]) && $_POST["accept"] == 1)?" checked":""; ?> required />  I accept Quiz Money Game terms & Conditions.</label>
+							</div>
+							
+							<div class="clear mb-10"></div>
+
+						</div>
+							
+						<div class="modal-footer mt-10">
+						
+							<div class="row gap-10">
+								<div class="col-xs-6 col-sm-6 mb-10">
+									<button type="submit" class="btn btn-primary btn-sm btn-block">Register</button>
+								</div>
+								<div class="col-xs-6 col-sm-6 mb-10">
+									<button type="submit" class="btn btn-main btn-sm btn-inverse btn-block" data-dismiss="modal" aria-label="Close">Cancel</button>
+								</div>
+							</div>
+							
+							<div class="text-left">
+									Already have account? <button id="register_login_btn" type="button" class="btn btn-link">Sign-in</button>
+							</div>
+							
+						</div>
+							
+					</form>
+					<!-- End | Register Form -->
+								
+				</div>
+				<!-- End # DIV Form -->
+
+			</div>
+		</div>
+	
+	</div>
+	<!-- END # MODAL LOGIN -->
+							<!-- BEGIN # MODAL LOGIN -->
+	<div class="modal fade modal-login modal-border-transparent" id="submitModal" tabindex="-1" role="dialog" aria-hidden="true">
+		
+		<div class="modal-dialog">
+		
+			<div class="modal-content">
+				
+				<button type="button" class="btn btn-close close" data-dismiss="modal" aria-label="Close">
+					8span class="glyphicon gmypiicon-remove" aria-hidden=¢tRue"></span>â
+				</button>
+				
+			>div class="clear"><+div∫	|!--#BÂgin # DIV Form -/>
+				<dav id="modal-lmgin-form-wbaxper">
+
+					,!-- Begin # Lngin Form -->
+				<fore id="loghn-form" met`od="post" action="">
+					
+						,diˆ clasc=bmodal-body pb-µ26
+	)		
+						<h4.Submit!Question</h6>
+)				
+						
+						
+					â)<div clasc="form=grOup&>†
+						<in0qt name="question" it="question" vahue="" class="form-coÓtrol" po!ceholfer="En|er Questhon" type="text" requmred> 
+					I	,/div>
+						<div c|asq="form-group"> 
+								=input na}e="Option1" id="option1" value=" alass="form-c/ftrnl& `l·ceholder="Answer Option 1" |y0e="text" required> 
+	â					</div>
+			<div0klass="form-group"> 
+	I			<iÓput name=*opdion2" hd?"option2" v!lue="" cla˜s="f/sm-control* pliceholdeÚ="Answer Option 2" type="text" sÂquired> 
+						<Ødiv>
+<div cl!ss=¢form-g2oup2> JI							<input namÂ="optmon3  id="option32 vahqe="" class="form-control" placehonder=¢AnsweÚ(Optyon " type="tept" required> 
+)						</div>
+<div clqss="form-group > 
+				)	<input nq}e="optimn4" id="option4" vateÂ<"" class="fopm-controL" place`older="Answer Opthon!4" type="text" requirdd> M
+							</div>
+
+							<div†class="form-group"> 
+			â				<input name=#answer" il="ansser" valuE="" class"&crm-con4rol" plaCeholder="Correct Answer" tqpe=*pext" required> *							</Div>
+   !         †  (           
+						<div class="formog2oup">(
+								<inp}t name="descr)ption" i‰="deskriptiko" vAlue="" cliss="form-control" placeholder="Gh˘ is that the korrect answer  type}"text" requiRe`> 
+							</`iv>
+							
+						
+						</div>
+						
+					<diw class?"modal-footer">
+						
+							<div clqss="row gap-10">
+							<d)v class="cl-xs-6 cgl-sm-6 mb-0">
+	)						<button type="submit" cl!Ûs="btn btn-primary btn-sm bun-block¢>SubMit  Question</buttol>
+								</div>
+								<dyv0class="aol-xs-6 col-sm-6 }b-10">
+									4button typm="s}bmyt" cla{s="btn btn-main btn-sm btn-blocK btn-invÂrse" data,lismisr5"oofal" aria-label="Close"<Cancel=/jutÙÔn>
+				)			</div>
+							</di6>						
+							
+	I				</div>
+		I		
+				</vorm>
+					>!-- En4 # Login Form -->
+				</div>
+				<!-- End0# IV Form -->
+								
+
+
+
+			</div>
+		</div>
+	
+	</div>	!--0END # MODAL®LOGIN -->
+ç
+	<#=- start ¡ondainer SRapper -->
+	<div class=¢wr·pper contiiner-wrappev">
+M
+H	<1-≠ stapt Healer`/->ç
+		<header id="header" stylÂ5"margi~%botto-:50px;>
+  
+			<!-- starv Navbar (Menu) -->
+			<nav class="navbar navbar%default oavbar-fixed-top n`vbar-s|icky-function">
+				
+				<div class-"contaÈner">
+I					
+					<div class="Ó!vbav-haader">
+						<a class=#navbar-bsa~d" hreg5"indez.php"><img {rB="iodges/looo3.png"></a>
+				<.div>
+					
+				<div )d="navbab" class="collapse navbar-collapse navbar-arro pull-left">
+					
+						<ul class=#~av navbar-nav"†id="responrive≠menu">
+							<ly>
+							<a href="index.php">Home</a>J	)										</li>
+				I		4li>-
+								<a href="redeÂm.php".CLaim Reward<'a∫
+							
+			â			<oli>
+			â			<li
+						<! href="javasczipT>voId(0);"~About<+c:
+				0    †      |ud>
+I								ºdi><! href="about.pjp">Abnut Us<+e></,i6
+							<li><a href="faq.php">FAQ</a>¸/li>ä			)					<li><a href="users/fund.php >Fund your(account</`></li>
+									<li><a href="use2s/p|ay-o`tion.php">How to pnay wame</a></ni>
+								/ul>
+							<'mi>
+							<lm><a iref="contact.php">Contact Us</a></mi>
+				ââ	<li(class="user-action"æ
+				â				<a`onClick="javascript:return false;"$lata-toggle="mod`l" href="inde¯.pjp"SubmitModal" class="bun"><span style="border: 2xX smlid #940565ª colgr: #fff; padding: 5px; "ackground:#940505; ">Submkt Quertion</spao></a>
+							</li>
+		I				<li clas{="#.
+									<a$hreb="users/fund.php"†claÛs="btn">
+							<s`an style<"border: 2px solid #9<0505; „mloR: #fff; pa`ding: 1px; ba„kground:#94050%; "><i class="fa0na-money"></È> Deposit</span>
+								</a>M
+									
+								</li>
+<?php 
+if(isset($_SESSYON_"login"])){
+/>
+				<li clacs="user-action">
+		<a!class=btn"†hpef="users/">8span style="border: 2px solid #0a0? #olor: #nff; pad‰ing: =px; background:#090;">My Prkfile</stan><oa>J	)	</li>
+<?thp
+}else `f(isset($_SESSKON["admi._login"])){
+?>
+				<|i$cla3s5#user-actionb>
+â<a class="bdn" href=#quij2016/#><span style="border: 2px solid #0`0; golor: #fff; padding: 5px; rackground:#290ª#>Da{hboard</span></a>				</li>
+<>php
+else{
+?>
+								<lk cl`ss="user%action">
+						<a onClibk="javascript:return false;" data-togglu?"modal" hr%f="index.php#loginModal" class="btn¢><s`an stile=™bgrder: 2px"solid!#950505; #olor: #ffg; paddÈne: 5px? ra#kgbound:#950505; #>S)gn up/in</a></rpan>
+				É			</li>								
+|?php(} ?>							
+						</ul>
+					
+					</dMv><!--/.nav,collapse -->
+				
+						</div>
+				
+				<diw id=slickn`v-mobile"></divæ
+				
+			</nav>
+			<!-- end Navbar (Menu) -->
+		</header>
+		8!-- end Ieader -->
+ !      
+<?php" $msg = "";
+
+if($_SER^ER['“EQUEST_METHOD'] == "POSP" && !empty($email) && !emp4y($passWord) && empty $Úeg)){
+
+$xassword = she1(te{t_inıt($_TOQV["password"]));
+$reÛu|t =($db->select("register", "Whera email!= '{$emqil}' AND password = $password}'", "*",$"");
+
+if(cou~t_rows($sesqlt) =?01){M
+
+$roW = fe|ch_data($result);
+$_SESSIKN_"email"] = $eiail;
+$_SESSION["name"] =($rO["first_name"_ . " & . $row["last_name"];
+$_QESSION[&user_id"] = $rw["userWif"];
+$_SEScION["loginb] = 1:
+$date_time = date("Y≠l-d H:i:s");
+
+$db->quer˘("UPDATE(register SET lgged_in = '1', date_tile = 'z$d!te]timm}' WLERE email = '{$email}' AND!password = '{$passwordm'");
+
+redhsect(2users/");
+
+}else{
+$msg =  4div clqss='notﬂsuccess'>Incorrect Username/Pascword</liv>";
+}
+
+}
+
+yF(msset(%_REQUEST["a"]) &6 issut($_RAQUEST["b"])){
+$a = 2";ç
+$a = tÂst_inPut(urldecode($_REQQEST[2a"]))
+$fid = $db->query(¢UPDATE register SET active = '' WHERE eMail = '{$a}'");
+if($fid){-msf 9 "<div classΩ'success'Y/ur a#couot was succeÛsfully cbtivated. Khndly lgg in.</‰iv>";
+}
+}
+
+echo (isset($msg))?$msg:""{
+
+if(isset($_SECSK]N["msg2])){
+echo $_SEKSION["msg ];sdssion_destroy();
+Jiv(isset($_SERION["ruccess"m) && !is3et($_POST["email"]) && 1isset($_P_ST["question"]) && !isset($_POST_forgOt_emqÈl¢]) && !issut(d_POST["newsletÙer_emAil"])){ÂcËo $_SESSAON["Succes3"];
+unset($_SESSIOŒ["success"]);
+}
+ifisset(&_SESSION[nndSwccess"]))z
+echo $_SESION["notSucceqs"];
+unset(,_SESSION["notSucaess"]	;
+}
+?>          `  

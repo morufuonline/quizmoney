@@ -1,0 +1,22 @@
+
+/*------------------------------------------------------------------
+* 
+*	Add your own style
+*
+* -------------------------------------------------------------------*/
+
+#account{
+	border:3px solid #f1e2e2; background-color:#fff; padding:3px 20px 30px 20px; margin-bottom:10px;
+}
+
+#link{
+	padding:10px;
+ border: 2px solid #fff;
+ color:#fff;
+ background-color: #940404;
+ margin-bottom:10px;
+}
+
+#wire{
+	font-weight: bold;
+}
